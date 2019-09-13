@@ -2,7 +2,6 @@
 This is a demo of a real-time Laravel Todo application built with RethinkDB and Pusher. {LINK}
 
 ## Getting started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 - Clone this repo
 - Copy .env.example to .env and update your local environment variable.
 - Install all dependencies:
