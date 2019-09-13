@@ -1,10 +1,13 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
-require('./bootstrap');
+window.Pusher = require('pusher-js');
+import Echo from "laravel-echo"
+
+window.Echo = new Echo({
+    broadcaster: "pusher",
+    key: "2e7bd3399847601fafe7",
+    cluster: "eu",
+    forceTLS: true
+});
 
 window.Vue = require('vue');
 
