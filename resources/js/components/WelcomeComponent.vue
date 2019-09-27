@@ -1,3 +1,5 @@
+
+
 <template>
   <div class="container">
     <div class="flex-center position-ref full-height">
@@ -19,7 +21,6 @@
                 <form v-bind:id="'update'+todo.id" v-bind:action="'/todo/'+todo.id" method="POST">
                   <slot></slot>
                   <input type="hidden" name="_method" value="PUT" />
-
                   <input
                     type="text"
                     name="body"
@@ -45,8 +46,10 @@
     </div>
   </div>
 </template>
-
 <script>
+window.Pusher = require("pusher-js");
+import Echo from "laravel-echo";
+
 export default {
   props: ["currentTodos"],
   data() {
@@ -60,6 +63,12 @@ export default {
   },
   methods: {
     listenForChanges() {
+      window.Echo = new Echo({
+        broadcaster: "pusher",
+        key: "PUSHER_APP_KEY",
+        cluster: "eu",
+        forceTLS: true
+      });
       const channel = window.Echo.channel("todo-channel");
       channel.listen(".todo-event", data => {
         this.todos = data.todos;
